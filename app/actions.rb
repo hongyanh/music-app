@@ -1,4 +1,5 @@
 # Homepage (Root path)
 get '/' do
-  erb :index
+  @tracks = Track.all
+  erb :'track/index'
 end

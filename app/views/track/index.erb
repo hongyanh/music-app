@@ -1,0 +1,6 @@
+<h1>Music People Like</h1>
+<% @tracks.each do |track| %>
+  <h3><%= track.title %></h3>
+  <h4><%= track.author %></h4>
+  <a href="<%= track.url %>"><%= track.url %></a>
+<% end %>
