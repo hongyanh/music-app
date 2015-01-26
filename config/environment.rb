@@ -9,6 +9,9 @@ require 'sinatra/activerecord'
 
 require 'pry'
 
+# load soundcloud api
+require 'soundcloud'
+
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
 
@@ -21,6 +24,8 @@ configure do
   set :session_secret, ENV['SESSION_KEY'] || 'lighthouselabssecret'
 
   set :views, File.join(Sinatra::Application.root, "app", "views")
+
+  set :soundcloud_id, '338c01eb1867749ccbd737036aa46844'
 end
 
 # Set up the database and models
@@ -28,3 +33,5 @@ require APP_ROOT.join('config', 'database')
 
 # Load the routes / actions
 require APP_ROOT.join('app', 'actions')
+
+

@@ -1,6 +1,14 @@
 <h1>Music People Like</h1>
 <% @tracks.each do |track| %>
-  <h3><%= track.title %></h3>
-  <h4><%= track.author %></h4>
-  <a href="<%= track.url %>"><%= track.url %></a>
+  <div class="">
+    <hr>
+    <h3>
+    <% if track.url %>
+      <a href="<%= track.url %>" target="_blank"><span class="title"><%= track.title %></span> <span class="author">by: <%= track.author %></span></a>
+    <% else %>
+      <span class="title"><%= track.title %></span><span class="author">by: <%= track.author %></span>
+    <% end %>
+    </h3>
+    <div><%= @tracks_embed[track.id] %></div>
+  </div>
 <% end %>
