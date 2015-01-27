@@ -12,14 +12,16 @@
   -->
   <link rel="stylesheet" href="/stylesheets/foundation.min.css">
   <link rel="stylesheet" href="/stylesheets/application.css">
-  <script src="/javascript/vendor/modernizr.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/javascript/application.js"></script>
   <title>Music We Like</title>
 </head>
 <body>
   <nav class="top-bar" data-topbar role="navigation">
     <section class="top-bar-section">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="#">Music People Like</a></h1>
+        </li>
+      </ul>
       <ul class="right">
         <% if @user %>
         <li class="has-dropdown">
@@ -27,7 +29,7 @@
           <ul class="dropdown">
             <li><a href="#">Music I Like</a></li>
             <li><a href="#">Music I Vote</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="/logout">Logout</a></li>
           </ul>
         </li>
         <% else %>
@@ -41,5 +43,12 @@
     </section>
   </nav>
   <%= yield %>
+  <script src="/javascript/vendor/modernizr.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/javascript/foundation.min.js"></script>
+  <script src="/javascript/application.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
 </body>
 </html>

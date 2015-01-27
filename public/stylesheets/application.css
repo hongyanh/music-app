@@ -1,3 +1,61 @@
+.button, .button.active, .button:focus {
+  background-color: #FF2A00; }
 
+.button:hover, .button.active:hover {
+  background-color: #ff3f1a; }
+
+.box {
+  position: relative;
+  top: 35%;
+  transform: translateY(-35%); }
+
+.cover {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 100%;
+  width: 100%;
+  z-index: 0; }
+
+.bg {
+  position: relative;
+  background: url("/assets/images/bg.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  min-width: 1024px;
+  margin-top: -45px;
+  z-index: 0; }
+
+input {
+  height: 3rem !important;
+  font-size: 1rem !important; }
+
+.top-bar {
+  background: transparent;
+  z-index: 1; }
+
+.top-bar-section li a:not(.button) {
+  background: transparent !important; }
+
+.top-bar-section li a:not(.button):hover {
+  background: transparent !important; }
+
+.top-bar-section ul li.active > a {
+  background: transparent !important; }
+
+.top-bar-section ul li.active > a:hover {
+  background: transparent !important; }
+
+.top-bar-section ul li {
+  background: transparent !important; }
+
+h3 {
+  margin-top: 10px;
+  margin-left: 10px; }
 
 /*# sourceMappingURL=application.css.map */
