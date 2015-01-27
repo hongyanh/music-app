@@ -8,15 +8,21 @@ get '/' do
   if session[:message]
     @message = session[:message]
     case session[:status]
-      when 0
-        @message_type = 'alert'
-      when 1
-        @message_type = 'success'
+    when 0
+      @message_type = 'alert'
+    when 1
+      @message_type = 'success'
     end
     session.delete(:message)
     session.delete(:status)
   end
-  @tracks = Track.all
+  @tracks = []
+  Track.joins("LEFT JOIN `vote_relations` ON vote_relations.track_id = tracks.id").group("tracks.id").order("count_track_id desc").count(:track_id).each do |key, value|
+    track = Track.find(key)
+    track.votes = value
+    @tracks << track
+  end
+
   @tracks_embed = {}
   @tracks.each do |track|
     if !track.url.nil?
@@ -64,7 +70,7 @@ post '/track/new' do
     author: embed_info[:author_name],
     url: track_url,
     user_id: session[:user_id]
-  )
+    )
   if @track.save
     session[:message] = 'New track "' << embed_info[:title] << '" created.'
     session[:status] = 1
@@ -89,14 +95,10 @@ post '/login' do
 end
 
 post '/track/:id/vote' do
-  
+
   if VoteRelation.single_vote(session[:user_id], params[:id]).count == 0
     vote_relation = VoteRelation.new(track_id: params[:id], user_id: session[:user_id])
-    if vote_relation.save
-      track = Track.find(params[:id])
-      track[:votes] += 1
-      track.save
-    end
+    vote_relation.save
   end
   redirect '/'
 end

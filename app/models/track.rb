@@ -5,4 +5,5 @@ class Track < ActiveRecord::Base
   validates :title, presence: true
   validates :author, presence: true
   validates :url, format: URI::regexp(%w(http https))
+  attr_accessor :votes
 end
