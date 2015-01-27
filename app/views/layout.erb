@@ -3,12 +3,13 @@
 <head>
   <link rel="stylesheet" href="/stylesheets/normalize.css">
   <link rel="stylesheet" href="/stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="/stylesheets/foundation-icons.css">
   <link rel="stylesheet" href="/stylesheets/application.css">
   <title>Music We Like</title>
 </head>
 <body>
   <% if @message %>
-  <div data-alert class="alert-box text-center <%= 'alert' if @message_type == 0 %>">
+  <div data-alert class="alert-box text-center <%= @message_type %>">
     <%= @message %>
     <a href="#" class="close">&times;</a>
   </div>

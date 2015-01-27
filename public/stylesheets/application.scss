@@ -90,3 +90,25 @@ h3 {
   margin-top: $gap-2;
   margin-left: $gap-2;
 }
+
+h2 {
+  padding-top: $gap-2;
+}
+
+.votes {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+.track-list {
+  margin-top: 2rem;
+}
+
+.like {
+  padding: $gap-base, $gap-2;
+  margin-right: $gap-2;
+}
+
+.like > i {
+  font-size: 2rem;
+}

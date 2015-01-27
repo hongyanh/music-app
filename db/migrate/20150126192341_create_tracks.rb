@@ -3,7 +3,7 @@ class CreateTracks < ActiveRecord::Migration
     create_table :tracks do |t|
       t.string :title, null: false
       t.string :author, null: false
-      t.string :url
+      t.string :url, null: false
       t.timestamps
     end
   end

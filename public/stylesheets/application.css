@@ -59,4 +59,21 @@ h3 {
   margin-top: 10px;
   margin-left: 10px; }
 
+h2 {
+  padding-top: 10px; }
+
+.votes {
+  font-size: 1.5rem;
+  margin-left: 0.5rem; }
+
+.track-list {
+  margin-top: 2rem; }
+
+.like {
+  padding: 5px, 10px;
+  margin-right: 10px; }
+
+.like > i {
+  font-size: 2rem; }
+
 /*# sourceMappingURL=application.css.map */

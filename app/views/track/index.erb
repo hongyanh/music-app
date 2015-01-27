@@ -20,15 +20,17 @@
 </section>
 <% end %>
 
-<section>
+<section class="track-list">
   <% @tracks.each do |track| %>
-  <h3>
-    <% if track.url %>
+  <form action="/vote/<%= track.id %>" method="POST">
+    <input type="hidden" name="id" value="<%= track.id %>">
+    <button type="submit" class="left like"><i class="fi-like"></i><span class="votes"> <%= track.votes %></span></button>
+  </form>
+
+  <h2>
     <a href="<%= track.url %>" target="_blank"><span class="title"><%= track.title %></span> <span class="author">by: <%= track.author %></span></a>
-    <% else %>
-    <span class="title"><%= track.title %></span><span class="author">by: <%= track.author %></span>
-    <% end %>
-  </h3>
+  </h2>
+  
   <div><%= @tracks_embed[track.id] %></div>
   <hr>
   <% end %>
