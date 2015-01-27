@@ -88,9 +88,15 @@ post '/login' do
   redirect '/'
 end
 
-post '/vote/:id' do
-  track = Track.find(params[:id])
-  track[:votes] += 1
-  track.save
+post '/track/:id/vote' do
+  
+  if VoteRelation.single_vote(session[:user_id], params[:id]).count == 0
+    vote_relation = VoteRelation.new(track_id: params[:id], user_id: session[:user_id])
+    if vote_relation.save
+      track = Track.find(params[:id])
+      track[:votes] += 1
+      track.save
+    end
+  end
   redirect '/'
 end

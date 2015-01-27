@@ -1,7 +1,7 @@
 <% if @user %>
 <section class="bg">
-<div class="cover"></div>
-<div class="box">
+  <div class="cover"></div>
+  <div class="box">
     <form method="POST" action="/track/new">
       <div class="middle">
         <div class="large-12 columns">
@@ -22,10 +22,19 @@
 
 <section class="track-list">
   <% @tracks.each do |track| %>
-  <form action="/vote/<%= track.id %>" method="POST">
+
+  <% if @user && VoteRelation.single_vote(@user.id, track.id).count == 0 %>
+
+  <form action="/track/<%= track.id %>/vote" method="POST">
     <input type="hidden" name="id" value="<%= track.id %>">
     <button type="submit" class="left like"><i class="fi-like"></i><span class="votes"> <%= track.votes %></span></button>
   </form>
+
+  <% else %>
+
+  <div class="left like like-show"><i class="fi-like"></i><span class="votes"> <%= track.votes %> | </span></div>
+
+  <% end %>
 
   <h2>
     <a href="<%= track.url %>" target="_blank"><span class="title"><%= track.title %></span> <span class="author">by: <%= track.author %></span></a>

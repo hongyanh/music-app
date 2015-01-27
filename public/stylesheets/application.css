@@ -73,6 +73,10 @@ h2 {
   padding: 5px, 10px;
   margin-right: 10px; }
 
+.like-show {
+  margin: 0.6rem 1rem;
+  color: #008CBA; }
+
 .like > i {
   font-size: 2rem; }
 
