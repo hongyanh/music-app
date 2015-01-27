@@ -18,6 +18,28 @@
   <title>Music We Like</title>
 </head>
 <body>
+  <nav class="top-bar" data-topbar role="navigation">
+    <section class="top-bar-section">
+      <ul class="right">
+        <% if @user %>
+        <li class="has-dropdown">
+          <a href="#"><%= @user.email %></a>
+          <ul class="dropdown">
+            <li><a href="#">Music I Like</a></li>
+            <li><a href="#">Music I Vote</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </li>
+        <% else %>
+        <form method="POST" action="/login">
+          <li><div class="columns"><input type="text" name="email" value="" placeholder="Email Address"></div></li>
+          <li><div class="columns"><input type="password" name="password" value="" placeholder="Password"></div></li>
+          <li><div class="columns"><input type="submit" value="Login" class="button"></div></li>
+        </form>
+        <% end %>
+      </ul>
+    </section>
+  </nav>
   <%= yield %>
 </body>
 </html>

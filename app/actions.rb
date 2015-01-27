@@ -1,5 +1,8 @@
 # Homepage (Root path)
 get '/' do
+  if session[:user_id]
+    @user = User.find(session[:user_id])
+  end
   @tracks = Track.all
   @tracks_embed = {}
   @tracks.each do |track|
@@ -12,7 +15,13 @@ get '/' do
       @tracks_embed[track.id] = embed_info['html']
     end
   end
-  # print the html for the player widget
-  # erb embed_info['html']
   erb :'track/index'
+end
+
+post '/login' do
+  user = User.where(email: params[:email], password: params[:password]).first
+  if user
+    session[:user_id] = user.id
+  end
+  redirect '/'
 end
