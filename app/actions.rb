@@ -4,9 +4,14 @@ get '/logout' do
 end
 
 get '/' do
-  if session[:user_id]
-    @user = User.find(session[:user_id])
+  @user = User.find(session[:user_id]) if session[:user_id]
+  if session[:message]
+    @message = session[:message]
+    @message_type = session[:status]
+    session.delete(:message)
+    session.delete(:status)
   end
+
   @tracks = Track.all
   @tracks_embed = {}
   @tracks.each do |track|
@@ -22,10 +27,17 @@ get '/' do
   erb :'track/index'
 end
 
-post '/login' do
-  user = User.where(email: params[:email], password: params[:password]).first
-  if user
-    session[:user_id] = user.id
+post '/user/new' do
+  @user = User.new(
+    email: params[:email],
+    password: params[:password]
+    )
+  if @user.save
+    session[:message] = 'User account created!'
+    session[:status] = 1
+  else
+    session[:message] = 'The account is exist, please choose another email or login.'
+    session[:status] = 0
   end
   redirect '/'
 end
@@ -48,4 +60,17 @@ post '/track/new' do
   else
     erb :'track/index'
   end
+end
+
+post '/login' do
+  user = User.where(email: params[:email], password: params[:password]).first
+  if user
+    session[:user_id] = user.id
+    session[:message] = 'Welcome Back ' << user.email << '!'
+    session[:status] = 1
+  else
+    session[:message] = 'Wrong email or password, please try again.'
+    session[:status] = 0
+  end
+  redirect '/'
 end

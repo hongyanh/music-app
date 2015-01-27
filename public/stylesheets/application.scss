@@ -5,13 +5,13 @@ $transparent: rgba(0,0,0,0);
 $gap-base: 5px;
 $gap-2: $gap-base * 2;
 
-.button, .button.active, .button:focus {
-  background-color: $primary;
-}
+// .button, .button.active, .button:focus {
+//   background-color: $primary;
+// }
 
-.button:hover, .button.active:hover {
-  background-color: $primary-light;
-}
+// .button:hover, .button.active:hover {
+//   background-color: $primary-light;
+// }
 
 .box {
   position: relative;
@@ -43,9 +43,22 @@ $gap-2: $gap-base * 2;
   z-index: 0;
 }
 
-input {
+input, .button {
   height: 3rem !important;
   font-size: 1rem !important;
+}
+
+// .top-bar a.button {
+//   padding-top: 1rem;
+// }
+
+.alert-box {
+  z-index: 1;
+  margin-bottom: 0px;
+}
+
+#myModal {
+  max-width: 30rem;
 }
 
 .top-bar {

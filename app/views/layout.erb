@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!--
-    normalize.css removes cross-browser differences in defaults, e.g.,
-    differences in how form elements appear between Firefox and IE
-    See: http://necolas.github.com/normalize.css/
-  -->
   <link rel="stylesheet" href="/stylesheets/normalize.css">
-  <!--
-    application.css is where you put your styles
-  -->
   <link rel="stylesheet" href="/stylesheets/foundation.min.css">
   <link rel="stylesheet" href="/stylesheets/application.css">
   <title>Music We Like</title>
 </head>
 <body>
+  <% if @message %>
+  <div data-alert class="alert-box text-center <%= 'alert' if @message_type == 0 %>">
+    <%= @message %>
+    <a href="#" class="close">&times;</a>
+  </div>
+  <% end %>
   <nav class="top-bar" data-topbar role="navigation">
     <section class="top-bar-section">
       <ul class="title-area">
@@ -34,10 +32,20 @@
         </li>
         <% else %>
         <form method="POST" action="/login">
-          <li><div class="columns"><input type="text" name="email" value="" placeholder="Email Address"></div></li>
-          <li><div class="columns"><input type="password" name="password" value="" placeholder="Password"></div></li>
-          <li><div class="columns"><input type="submit" value="Login" class="button"></div></li>
+          <li><div class="columns"><input type="email" name="email" value="" placeholder="Email Address" required></div></li>
+          <li><div class="columns"><input type="password" name="password" value="" placeholder="Password" required></div></li>
+          <li><div class="columns"><input type="submit" value="Login" class="button alert"></div></li>
+          <li><div class="columns"><button href="/user/new" class="button" data-reveal-id="myModal">Signup</div></li>
         </form>
+        <div id="myModal" class="reveal-modal" data-reveal>
+          <h2>Signup</h2>
+          <form method="POST" action="/user/new">
+            <input type="email" name="email" value="" placeholder="Email Address" required>
+            <input type="password" name="password" value="" placeholder="Password" required>
+            <input type="submit" value="Signup" class="button alert">
+          </form>
+          <a class="close-reveal-modal">&#215;</a>
+        </div>
         <% end %>
       </ul>
     </section>
