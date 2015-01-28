@@ -94,11 +94,11 @@ post '/login' do
   redirect '/'
 end
 
-post '/track/:id/vote' do
-
-  if VoteRelation.single_vote(session[:user_id], params[:id]).count == 0
-    vote_relation = VoteRelation.new(track_id: params[:id], user_id: session[:user_id])
+post '/track/vote' do
+  track_id = params[:id].to_i
+  if VoteRelation.single_vote(session[:user_id], track_id).count == 0
+    vote_relation = VoteRelation.new(track_id: track_id, user_id: session[:user_id])
     vote_relation.save
   end
-  redirect '/'
+  VoteRelation.where(track_id: track_id).count.to_s
 end

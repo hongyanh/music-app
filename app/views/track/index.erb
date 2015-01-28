@@ -25,14 +25,11 @@
 
   <% if @user && VoteRelation.single_vote(@user.id, track.id).count == 0 %>
 
-  <form action="/track/<%= track.id %>/vote" method="POST">
-    <input type="hidden" name="id" value="<%= track.id %>">
-    <button type="submit" class="left like"><i class="fi-like"></i><span class="votes"> <%= track.votes %></span></button>
-  </form>
+    <button type="submit" class="left like" id="track-<%= track.id %>"><i class="fi-like"></i><span class="votes"> <%= track.votes %></span></button>
 
   <% else %>
 
-  <div class="left like like-show"><i class="fi-like"></i><span class="votes"> <%= track.votes %> | </span></div>
+  <div class="left like like-show"><i class="fi-like"></i><span class="votes"> <%= track.votes %> </span></div>
 
   <% end %>
 

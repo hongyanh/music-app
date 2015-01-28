@@ -75,7 +75,8 @@ h2 {
 
 .like-show {
   margin: 0.6rem 1rem;
-  color: #008CBA; }
+  color: #008CBA;
+  background: none; }
 
 .like > i {
   font-size: 2rem; }
